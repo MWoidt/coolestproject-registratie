@@ -9,7 +9,9 @@
         Coolest Project Registration Procedure 2020
       </h2>
       <div class="links">
-        <n-link  class="button--grey" to="/registration">Start registratie</n-link>
+        <n-link class="button--grey" to="/registration">
+          Start registratie
+        </n-link>
       </div>
     </div>
   </div>
