@@ -6,7 +6,7 @@
       <template v-slot:lead>
         Coolest Project Registration Procedure 2020
       </template>
-      <b-button variant="dark" class="button-hero" href="/registration">Start registratie</b-button>
+      <b-button variant="dark" class="button-hero" href="/registration"><font-awesome-icon :icon="['fas', 'paper-plane']" /> Start registratie</b-button>
     </b-jumbotron>
     <b-container>
       <h1>Coolest project Belgium</h1>

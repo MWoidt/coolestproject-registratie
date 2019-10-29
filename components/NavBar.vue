@@ -19,7 +19,10 @@
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <b-nav-item href="/registration">Registratie</b-nav-item>
-            <b-nav-item-dropdown text="Kies je taal" right>
+            <b-nav-item-dropdown right>
+              <template v-slot:button-content>
+                <font-awesome-icon :icon="['fas', 'globe-europe']" />
+              </template>
               <b-dropdown-item href="#">English</b-dropdown-item>
               <b-dropdown-item href="#">Francais</b-dropdown-item>
               <b-dropdown-item href="#">Nederlands</b-dropdown-item>
@@ -50,3 +53,4 @@ export default {
   methods: {}
 }
 </script>
+button-content

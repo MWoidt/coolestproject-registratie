@@ -90,7 +90,7 @@
         </b-form-group>
 
         <b-form-group id="input-group-3" label="Van waar ken je ons:" label-for="input-3">
-          <b-form-input id="input-4" v-model="form.via" placeholder="Geef je dojo, school, ..." />
+          <b-form-input id="input-4" v-model="form.via" required placeholder="Geef je dojo, school, ..." />
         </b-form-group>
 
         <div v-show="!isGuardianNeeded">
@@ -116,6 +116,7 @@
             label="Email adres ouders/voogd"
             label-for="input-1"
             description="We delen dit met niemand"
+            required
           >
             <b-form-input
               id="input-1"
@@ -130,6 +131,7 @@
             label="mobiel nummer ouders/voogd"
             label-for="input-1"
             description="Waar kunnen we jou bereiken in geval van nood"
+            required
           >
             <b-form-input
               id="input-1"
@@ -188,16 +190,16 @@
           </b-form-group>
         </div>
         <b-form-group>
-          <b-form-checkbox value="ok">
+          <b-form-checkbox value="ok" required>
             Ik ben akkoord met de algemene voorwaarden
           </b-form-checkbox>
         </b-form-group>
         <b-form-group>
           <b-button type="submit" variant="info" class="button-hero">
-            Ik schrijf me in
+            <font-awesome-icon :icon="['fas', 'paper-plane']" /> Ik schrijf me in
           </b-button>
           <b-button type="reset" variant="danger" class="button-hero">
-            Verwijder alles
+            <font-awesome-icon :icon="['fas', 'trash-alt']" /> Verwijder alles
           </b-button>
         </b-form-group>
       </b-form>
