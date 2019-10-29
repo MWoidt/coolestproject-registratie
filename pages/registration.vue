@@ -48,6 +48,7 @@
           id="input-group-1"
           label="Geboortedatum"
           label-for="input-1"
+
         >
           <b-form-input
             id="datepicker-trigger"
@@ -57,8 +58,9 @@
             placeholder="Geboortedatum"
           />
           <AirbnbStyleDatepicker
-            :trigger-element-id="'datepicker-trigger'"
+            triggerElementId="datepicker-trigger"
             :mode="'single'"
+            inline
             show-month-year-select
             :date-one="form.birthdate"
             :years-for-select="90"
@@ -191,10 +193,10 @@
           </b-form-checkbox>
         </b-form-group>
         <b-form-group>
-          <b-button type="submit" variant="primary">
+          <b-button type="submit" variant="info" class="button-hero">
             Ik schrijf me in
           </b-button>
-          <b-button type="reset" variant="danger">
+          <b-button type="reset" variant="danger" class="button-hero">
             Verwijder alles
           </b-button>
         </b-form-group>
