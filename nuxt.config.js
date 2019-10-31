@@ -24,11 +24,14 @@ module.exports = {
   */
   css: [
   ],
+  router: {
+    // middleware: 'i18n'
+  },
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/datepicker'
+    // '~/plugins/i18n.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -43,6 +46,9 @@ module.exports = {
   modules: [
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
+    ['nuxt-i18n', {
+      vueI18nLoader: true
+    }],
     [
       'nuxt-fontawesome',
       {
@@ -63,6 +69,7 @@ module.exports = {
     bootstrapCSS: false,
     bootstrapVueCSS: false
   },
+  generate: {},
   /*
   ** Build configuration
   */
@@ -71,6 +78,24 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+    }
+  },
+  i18n: {
+    locales: ['en', 'fr', 'nl'],
+    defaultLocale: 'nl',
+    vueI18n: {
+      fallbackLocale: 'nl',
+      messages: {
+        en: {
+          welcome: 'Welcome'
+        },
+        fr: {
+          welcome: 'Bienvenue'
+        },
+        es: {
+          welcome: 'Bienvenido'
+        }
+      }
     }
   }
 }

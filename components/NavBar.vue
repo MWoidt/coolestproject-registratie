@@ -2,40 +2,30 @@
   <div>
     <b-navbar toggleable="lg">
       <b-container>
-        <b-navbar-brand href="/">
-          <img
-            width="100"
-            height="75"
-            src="~/assets/CPlogo.png"
-            class="img-fluid"
-            alt="Coolest Projects"
-            itemprop="logo"
-          />
-        </b-navbar-brand>
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+        <nuxt-link :to="localePath('index')">
+          <b-navbar-brand class="pr-5">
+            <img
+              width="100"
+              height="75"
+              src="~/assets/CPlogo.png"
+              class="img-fluid"
+              alt="Coolest Projects"
+              itemprop="logo"
+            >
+          </b-navbar-brand>
+        </nuxt-link>
+        <b-navbar-toggle target="nav-collapse" />
 
         <b-collapse id="nav-collapse" is-nav>
-
-          <!-- Right aligned nav items -->
+          <b-navbar-nav>
+            <b-nav-item :to="localePath('registration')">
+              Registratie
+            </b-nav-item>
+          </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
-            <b-nav-item href="/registration">Registratie</b-nav-item>
-            <b-nav-item-dropdown right>
-              <template v-slot:button-content>
-                <font-awesome-icon :icon="['fas', 'globe-europe']" />
-              </template>
-              <b-dropdown-item href="#">English</b-dropdown-item>
-              <b-dropdown-item href="#">Francais</b-dropdown-item>
-              <b-dropdown-item href="#">Nederlands</b-dropdown-item>
-            </b-nav-item-dropdown>
-
-            <b-nav-item-dropdown right v-if="loggedIn">
-              <!-- Using 'button-content' slot -->
-              <template v-slot:button-content>
-                Welkom <em>test</em>
-              </template>
-              <b-dropdown-item href="#">Mijn project</b-dropdown-item>
-              <b-dropdown-item href="#">Log uit</b-dropdown-item>
-            </b-nav-item-dropdown>
+            <b-nav-item v-for="(lang, i) in langs" :key="`Lang${i}`" :to="switchLocalePath(lang)">
+              {{ lang }}
+            </b-nav-item>
           </b-navbar-nav>
         </b-collapse>
       </b-container>
@@ -46,11 +36,11 @@
 export default {
   data () {
     return {
-      loggedIn: false
+      loggedIn: false,
+      langs: ['nl', 'fr', 'en']
     }
   },
   computed: {},
   methods: {}
 }
 </script>
-button-content
