@@ -1,40 +1,44 @@
 <template>
-    <div>
-        <b-navbar toggleable="lg">
-            <b-navbar-brand href="/">Coolest Projects</b-navbar-brand>
+  <div>
+    <b-navbar toggleable="lg">
+      <b-container>
+        <nuxt-link :to="localePath('index')">
+          <b-navbar-brand class="pr-5">
+            <img
+              width="100"
+              height="75"
+              src="~/assets/CPlogo.png"
+              class="img-fluid"
+              alt="Coolest Projects"
+              itemprop="logo"
+            >
+          </b-navbar-brand>
+        </nuxt-link>
+        <b-navbar-toggle target="nav-collapse" />
 
-            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-            <b-collapse id="nav-collapse" is-nav>
-            <b-navbar-nav>
-                <b-nav-item href="/registration">Registratie</b-nav-item>
-            </b-navbar-nav>
-
-            <!-- Right aligned nav items -->
-            <b-navbar-nav class="ml-auto">
-                <b-nav-item-dropdown text="Kies je taal" right>
-                    <b-dropdown-item href="#">English</b-dropdown-item>
-                    <b-dropdown-item href="#">Francais</b-dropdown-item>
-                    <b-dropdown-item href="#">Nederlands</b-dropdown-item>
-                </b-nav-item-dropdown>
-
-                <b-nav-item-dropdown right>
-                <!-- Using 'button-content' slot -->
-                <template v-slot:button-content>
-                    Welkom <em>test</em>
-                </template>
-                <b-dropdown-item href="#">Mijn project</b-dropdown-item>
-                <b-dropdown-item href="#">Log uit</b-dropdown-item>
-                </b-nav-item-dropdown>
-            </b-navbar-nav>
-            </b-collapse>
-        </b-navbar>
-    </div>
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav>
+            <b-nav-item :to="localePath('registration')">
+              Registratie
+            </b-nav-item>
+          </b-navbar-nav>
+          <b-navbar-nav class="ml-auto">
+            <b-nav-item v-for="(lang, i) in langs" :key="`Lang${i}`" :to="switchLocalePath(lang)">
+              {{ lang }}
+            </b-nav-item>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-container>
+    </b-navbar>
+  </div>
 </template>
 <script>
 export default {
   data () {
-    return {}
+    return {
+      loggedIn: false,
+      langs: ['nl', 'fr', 'en']
+    }
   },
   computed: {},
   methods: {}

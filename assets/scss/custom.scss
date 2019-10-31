@@ -1,0 +1,68 @@
+$enable-rounded: false;
+
+$info: #00AEA9;
+$dark:#000000;
+
+@font-face {
+   font-family: 'League Gothic';
+   src: url('../leaguegothic-italic-webfont.woff') format('woff2');
+}
+
+$headings-font-family: League Gothic;
+
+@import 'bootstrap/scss/bootstrap.scss';
+@import 'bootstrap-vue/src/index.scss';
+
+.hero-text {
+  font-family: "League Gothic";
+  font-size: 5.125rem;
+  text-transform: uppercase;
+  background-color: #fff;
+  display: inline-block;
+  padding: 0 15px;
+  color: #00AEA9
+}
+body{
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.container-fluid{
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.btn{
+  font-size: 1.5rem;
+  padding:0.5em;
+  margin-right: 0.2em;
+}
+
+h1{
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+}
+
+.bg-info{
+  color:#FFFFFF;
+}
+
+.nav-item:hover{
+  background-color: #00AEA9;
+}
+
+.nav-item{
+  font-size: 1.2em;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color:#000000;
+}
+
+.navbar-light:hover .navbar-nav:hover .nav-link:hover {
+  color:#FFFFFF;
+}
+
+.button-hero{
+  font-family:League Gothic;font-size:1.8em;text-transform: uppercase;letter-spacing: 0.11em;
+}
