@@ -369,7 +369,7 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required|max_value:25" name="ProjectName">
+            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:25" name="ProjectName">
               <b-form-group
                 id="input-group-20"
                 label="Projectnaam:"
@@ -387,7 +387,7 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required|max_value:200" name="ProjectDescription">
+            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:200" name="ProjectDescription">
               <b-form-group
                 id="input-group-21"
                 label="Omschrijving:"

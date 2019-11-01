@@ -1,5 +1,5 @@
 import { extend } from 'vee-validate'
-import { required, digits, regex, email, alpha_spaces as AlphaSpaces, oneOf, required_if as requiredIf } from 'vee-validate/dist/rules'
+import { required, digits, regex, email, alpha_spaces as AlphaSpaces, oneOf, required_if as requiredIf, max } from 'vee-validate/dist/rules'
 import isWithinRange from 'date-fns/is_within_range'
 import addYears from 'date-fns/add_years'
 
@@ -30,6 +30,10 @@ extend('oneOf', {
 
 extend('required_if', {
   ...requiredIf
+})
+
+extend('max', {
+  ...max
 })
 
 extend('between_dates', {
