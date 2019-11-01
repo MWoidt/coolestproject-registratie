@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-form-select v-model="month" :options="month_list" @input="change" />
-    <b-form-select v-model="year" :options="year_list" @input="change" />
+    <b-form-select v-model="month" :options="month_list" @input="change" :state="state" />
+    <b-form-select v-model="year" :options="year_list" @input="change" :state="state" />
   </div>
 </template>
 <script>
@@ -19,6 +19,10 @@ export default {
     minAge: {
       type: Number,
       default: 5
+    },
+    state: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -82,7 +86,7 @@ export default {
   },
   methods: {
     change (source) {
-      this.$emit('input', new Date(this.year_int, this.month_int))
+      this.$emit('input', new Date(this.year_int, this.month_int, 1))
     }
   }
 }
