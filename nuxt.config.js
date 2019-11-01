@@ -31,7 +31,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    // '~/plugins/i18n.js'
+    '~/plugins/vee-validate.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -78,24 +78,16 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
-    }
+    },
+    transpile: [
+      'vee-validate/dist/rules'
+    ]
   },
   i18n: {
     locales: ['en', 'fr', 'nl'],
     defaultLocale: 'nl',
     vueI18n: {
-      fallbackLocale: 'nl',
-      messages: {
-        en: {
-          welcome: 'Welcome'
-        },
-        fr: {
-          welcome: 'Bienvenue'
-        },
-        es: {
-          welcome: 'Bienvenido'
-        }
-      }
+      fallbackLocale: 'nl'
     }
   }
 }
