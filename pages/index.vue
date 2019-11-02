@@ -9,7 +9,7 @@
             alt="Coolest Projects"
             itemprop="logo"
             style="height:1.5em"
-          /><span class="hero-text">Coderdojo Belgium</span>
+          ><span class="hero-text">Coderdojo Belgium</span>
         </div>
       </template>
       <template v-slot:lead>

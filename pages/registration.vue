@@ -75,11 +75,11 @@
                 :event-date="startDateEvent"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-4-live-feedback"
-                :minAge="minAge"
-                :maxAge="maxAge"
+                :min-age="minAge"
+                :max-age="maxAge"
               />
-              <b-form-invalid-feedback id="input-4-live-feedback" v-bind:style="{ display: 'inline' }">
-                  {{ errors[0] }}
+              <b-form-invalid-feedback id="input-4-live-feedback" :style="{ display: 'inline' }">
+                {{ errors[0] }}
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
@@ -97,7 +97,7 @@
                 aria-describedby="input-5-live-feedback"
               />
               <b-form-invalid-feedback id="input-5-live-feedback">
-                  {{ errors[0] }}
+                {{ errors[0] }}
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
@@ -115,7 +115,7 @@
                 aria-describedby="input-6-live-feedback"
               />
               <b-form-invalid-feedback id="input-6-live-feedback">
-                  {{ errors[0] }}
+                {{ errors[0] }}
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
@@ -168,7 +168,7 @@
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-9-live-feedback"
               />
-               <b-form-invalid-feedback id="input-9-live-feedback">
+              <b-form-invalid-feedback id="input-9-live-feedback">
                 {{ errors[0] }}
               </b-form-invalid-feedback>
             </b-form-group>
@@ -186,7 +186,7 @@
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-10-live-feedback"
               />
-               <b-form-invalid-feedback id="input-10-live-feedback">
+              <b-form-invalid-feedback id="input-10-live-feedback">
                 {{ errors[0] }}
               </b-form-invalid-feedback>
             </b-form-group>
@@ -267,8 +267,8 @@
                 />
               </b-form-group>
               <b-form-invalid-feedback id="input-14-live-feedback">
-                  {{ errors[0] }}
-                </b-form-invalid-feedback>
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
             </ValidationProvider>
             <ValidationProvider v-slot="{ valid, errors }" name="Medical">
               <b-form-group
@@ -440,8 +440,8 @@
                 aria-describedby="input-23-live-feedback"
               />
               <b-form-invalid-feedback id="input-23-live-feedback">
-                  {{ errors[0] }}
-                </b-form-invalid-feedback>
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
           <b-form-group>
