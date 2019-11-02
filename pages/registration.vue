@@ -4,7 +4,7 @@
       <h1>{{ $t('title') }}</h1>
       <h2>{{ $t('personal_info') }}</h2>
       <ValidationObserver ref="observer" v-slot="{ passes }">
-        <b-form @submit.prevent="passes(onSubmit)" @reset="onReset">
+        <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
           <ValidationProvider v-slot="{ valid, errors }" rules="required|digits:4" name="PostalCode">
             <b-form-group
               id="input-group-1"
@@ -13,7 +13,7 @@
             >
               <b-form-input
                 id="input-1"
-                v-model="form.postalcode"
+                v-model="postalcode"
                 placeholder="postcode"
                 type="number"
                 :state="errors[0] ? false : (valid ? true : null)"
@@ -32,7 +32,7 @@
             >
               <b-form-input
                 id="input-2"
-                v-model="form.gsm"
+                v-model="gsm"
                 type="tel"
                 placeholder="mobiel nummer"
                 :state="errors[0] ? false : (valid ? true : null)"
@@ -52,7 +52,7 @@
             >
               <b-form-input
                 id="input-3"
-                v-model="form.email"
+                v-model="email"
                 type="email"
                 placeholder="email adres"
                 :state="errors[0] ? false : (valid ? true : null)"
@@ -71,14 +71,14 @@
             >
               <YearMonth
                 id="input-4"
-                v-model="form.birthmonth"
+                v-model="birthmonth"
                 :event-date="startDateEvent"
                 :state="errors[0] ? false : (valid ? true : null)"
-                aria-describedby="input-3-live-feedback"
+                aria-describedby="input-4-live-feedback"
                 :minAge="minAge"
                 :maxAge="maxAge"
               />
-              <b-form-invalid-feedback id="input-4-live-feedback">
+              <b-form-invalid-feedback id="input-4-live-feedback" v-bind:style="{ display: 'inline' }">
                   {{ errors[0] }}
               </b-form-invalid-feedback>
             </b-form-group>
@@ -91,7 +91,7 @@
             >
               <b-form-input
                 id="input-5"
-                v-model="form.firstname"
+                v-model="firstname"
                 placeholder="Geef je voornaam in"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-5-live-feedback"
@@ -109,7 +109,7 @@
             >
               <b-form-input
                 id="input-6"
-                v-model="form.lastname"
+                v-model="lastname"
                 placeholder="Geef je achternaam in"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-6-live-feedback"
@@ -127,7 +127,7 @@
             >
               <b-form-select
                 id="input-7"
-                v-model="form.sex"
+                v-model="sex"
                 :options="geslacht"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-7-live-feedback"
@@ -145,7 +145,7 @@
             >
               <b-form-select
                 id="input-8"
-                v-model="form.shirttype"
+                v-model="type"
                 :options="shirttype"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-8-live-feedback"
@@ -163,7 +163,7 @@
             >
               <b-form-select
                 id="input-9"
-                v-model="form.size"
+                v-model="size"
                 :options="shirtsize"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-9-live-feedback"
@@ -181,7 +181,7 @@
             >
               <b-form-input
                 id="input-10"
-                v-model="form.via"
+                v-model="via"
                 placeholder="Geef je dojo, school, ..."
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-10-live-feedback"
@@ -200,7 +200,7 @@
               >
                 <b-form-textarea
                   id="input-11"
-                  v-model="form.medical"
+                  v-model="medical"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-11-live-feedback"
                 />
@@ -216,8 +216,9 @@
               >
                 <b-form-checkbox-group
                   id="checkboxes-12"
-                  v-model="form.questions"
-                  :options="general_questions"
+                  v-model="general_questions"
+                  :options="general_questions_list"
+                  :checked="general_questions"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-12-live-feedback"
                 />
@@ -238,7 +239,7 @@
               >
                 <b-form-input
                   id="input-13"
-                  v-model="form.email_guardian"
+                  v-model="email_guardian"
                   type="email"
                   placeholder="email adres"
                   :state="errors[0] ? false : (valid ? true : null)"
@@ -258,7 +259,7 @@
               >
                 <b-form-input
                   id="input-14"
-                  v-model="form.gsm_guardian"
+                  v-model="gsm_guardian"
                   type="tel"
                   placeholder="mobiel nummer"
                   :state="errors[0] ? false : (valid ? true : null)"
@@ -277,7 +278,7 @@
               >
                 <b-form-textarea
                   id="input-15"
-                  v-model="form.medical"
+                  v-model="medical"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-15-live-feedback"
                 />
@@ -294,7 +295,7 @@
               >
                 <b-form-textarea
                   id="input-16"
-                  v-model="form.extra"
+                  v-model="extra"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-16-live-feedback"
                 />
@@ -310,8 +311,9 @@
               >
                 <b-form-checkbox-group
                   id="checkboxes-17"
-                  v-model="form.general_questions"
-                  :options="general_questions"
+                  v-model="general_questions"
+                  :checked="general_questions"
+                  :options="general_questions_list"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-17-live-feedback"
                 />
@@ -340,7 +342,7 @@
               >
                 <b-form-select
                   id="select-18"
-                  v-model="form.project_lang"
+                  v-model="project_lang"
                   :options="languages"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-18-live-feedback"
@@ -359,7 +361,7 @@
               >
                 <b-form-checkbox-group
                   id="checkboxes-19"
-                  v-model="form.project_type"
+                  v-model="project_type"
                   :options="project_types"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-19-live-feedback"
@@ -377,7 +379,7 @@
               >
                 <b-form-input
                   id="input-20"
-                  v-model="form.project_name"
+                  v-model="project_name"
                   placeholder="Projectnaam"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-20-live-feedback"
@@ -395,7 +397,7 @@
               >
                 <b-form-textarea
                   id="input-21"
-                  v-model="form.project_descr"
+                  v-model="project_descr"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-21-live-feedback"
                 />
@@ -415,7 +417,7 @@
               >
                 <b-form-input
                   id="input-22"
-                  v-model="form.project_code"
+                  v-model="project_code"
                   placeholder="Code"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-22-live-feedback"
@@ -432,8 +434,8 @@
             >
               <b-form-checkbox-group
                 id="checkboxes-23"
-                v-model="form.mandatory_approvals"
-                :options="mandatory_approvals"
+                v-model="mandatory_approvals"
+                :options="mandatory_approvals_list"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-23-live-feedback"
               />
@@ -464,6 +466,7 @@
   </b-row>
 </template>
 <script>
+import { mapState } from 'vuex'
 import addYears from 'date-fns/add_years'
 import differenceInCalendarYears from 'date-fns/difference_in_calendar_years'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
@@ -477,70 +480,7 @@ export default {
   },
   data () {
     return {
-      ok: false,
-      own_project: 'own',
-      startDateEvent: new Date(2020, 5, 16),
-      maxAge: 90,
-      minAge: 5,
-      form: {
-        postalcode: '',
-        email: null,
-        firstname: null,
-        lastname: null,
-        sex: null,
-        general_questions: [],
-        mandatory_approvals: [],
-        birthmonth: null,
-        size: null,
-        shirttype: null,
-        via: null,
-        medical: null,
-        extra: null,
-        project_name: null,
-        project_descr: null,
-        project_type: [],
-        project_code: null,
-        project_lang: 'nl'
-      },
-      geslacht: [
-        { text: 'Ik ben een', value: null },
-        'Meisje',
-        'Jongen',
-        'X'
-      ],
-      shirttype: [
-        { text: 'Kies een type', value: null },
-        'Meisje',
-        'Jongen'
-      ],
-      shirtsize: [
-        { text: 'Kies een maat', value: null },
-        'S',
-        'M',
-        'L',
-        'XL',
-        'XXL',
-        '3XL'
-      ],
-      project_types: [
-        { value: 'scratch', text: 'Scratch' },
-        { value: 'hardware', text: 'Hardware' },
-        { value: 'software', text: 'Software' },
-        { value: 'wifi', text: 'Wifi' },
-        { value: 'kabel', text: 'Kabelnetwerk' }
-      ],
-      languages: [
-        { value: 'nl', text: 'Nederlands' },
-        { value: 'fr', text: 'Frans' },
-        { value: 'en', text: 'Engels' }
-      ],
-      general_questions: [
-        { value: 'photo', text: 'Ik ben akkoord dat er fotos genomen worden' },
-        { value: 'contact', text: 'Je mag me contacteren voor de volgende events' }
-      ],
-      mandatory_approvals: [
-        { value: 'ok', text: 'Ik ben akkoord met de algemene voorwaarden' }
-      ]
+      own_project: 'own'
     }
   },
   computed: {
@@ -548,7 +488,7 @@ export default {
       return addYears(state.startDateEvent, -5)
     },
     isGuardianNeeded: (state) => {
-      return differenceInCalendarYears(state.startDateEvent, state.form.birthmonth) < 16
+      return differenceInCalendarYears(state.startDateEvent, state.birthmonth) < 16
     },
     isOwnProject: (state) => {
       return state.own_project === 'own'
@@ -558,6 +498,186 @@ export default {
     },
     endYear: (state) => {
       return addYears(state.startDateEvent, state.minAge * -1)
+    },
+    ...mapState([
+      'startDateEvent',
+      'maxAge',
+      'minAge',
+      'geslacht',
+      'shirttype',
+      'shirtsize',
+      'project_types',
+      'languages',
+      'general_questions_list',
+      'mandatory_approvals_list'
+    ]),
+    postalcode: {
+      set (value) {
+        this.$store.dispatch('registration/postalcode', value)
+      },
+      get () {
+        return this.$store.state.registration.postalcode
+      }
+    },
+    email: {
+      set (value) {
+        this.$store.dispatch('registration/email', value)
+      },
+      get () {
+        return this.$store.state.registration.email
+      }
+    },
+    firstname: {
+      set (value) {
+        this.$store.dispatch('registration/firstname', value)
+      },
+      get () {
+        return this.$store.state.registration.firstname
+      }
+    },
+    lastname: {
+      set (value) {
+        this.$store.dispatch('registration/lastname', value)
+      },
+      get () {
+        return this.$store.state.registration.lastname
+      }
+    },
+    sex: {
+      set (value) {
+        this.$store.dispatch('registration/sex', value)
+      },
+      get () {
+        return this.$store.state.registration.sex
+      }
+    },
+    general_questions: {
+      set (value) {
+        this.$store.dispatch('registration/general_questions', value)
+      },
+      get () {
+        return this.$store.state.registration.general_questions
+      }
+    },
+    mandatory_approvals: {
+      set (value) {
+        this.$store.dispatch('registration/mandatory_approvals', value)
+      },
+      get () {
+        return this.$store.state.registration.mandatory_approvals
+      }
+    },
+    birthmonth: {
+      set (value) {
+        this.$store.dispatch('registration/birthmonth', value)
+      },
+      get () {
+        return this.$store.state.registration.birthmonth
+      }
+    },
+    size: {
+      set (value) {
+        this.$store.dispatch('registration/size', value)
+      },
+      get () {
+        return this.$store.state.registration.size
+      }
+    },
+    type: {
+      set (value) {
+        this.$store.dispatch('registration/type', value)
+      },
+      get () {
+        return this.$store.state.registration.type
+      }
+    },
+    via: {
+      set (value) {
+        this.$store.dispatch('registration/via', value)
+      },
+      get () {
+        return this.$store.state.registration.via
+      }
+    },
+    medical: {
+      set (value) {
+        this.$store.dispatch('registration/medical', value)
+      },
+      get () {
+        return this.$store.state.registration.medical
+      }
+    },
+    extra: {
+      set (value) {
+        this.$store.dispatch('registration/extra', value)
+      },
+      get () {
+        return this.$store.state.registration.extra
+      }
+    },
+    project_name: {
+      set (value) {
+        this.$store.dispatch('registration/project_name', value)
+      },
+      get () {
+        return this.$store.state.registration.project_name
+      }
+    },
+    project_descr: {
+      set (value) {
+        this.$store.dispatch('registration/project_descr', value)
+      },
+      get () {
+        return this.$store.state.registration.project_descr
+      }
+    },
+    project_type: {
+      set (value) {
+        this.$store.dispatch('registration/project_type', value)
+      },
+      get () {
+        return this.$store.state.registration.project_type
+      }
+    },
+    project_code: {
+      set (value) {
+        this.$store.dispatch('registration/project_code', value)
+      },
+      get () {
+        return this.$store.state.registration.project_code
+      }
+    },
+    project_lang: {
+      set (value) {
+        this.$store.dispatch('registration/project_lang', value)
+      },
+      get () {
+        return this.$store.state.registration.project_lang
+      }
+    },
+    gsm: {
+      set (value) {
+        this.$store.dispatch('registration/gsm', value)
+      },
+      get () {
+        return this.$store.state.registration.gsm
+      }
+    },
+    gsm_guardian: {
+      set (value) {
+        this.$store.dispatch('registration/gsm_guardian', value)
+      },
+      get () {
+        return this.$store.state.registration.gsm_guardian
+      }
+    },
+    email_guardian: {
+      set (value) {
+        this.$store.dispatch('registration/email_guardian', value)
+      },
+      get () {
+        return this.$store.state.registration.email_guardian
+      }
     }
   },
   methods: {
@@ -565,10 +685,8 @@ export default {
       alert(JSON.stringify(this.form))
     },
     onReset (evt) {
-      // Reset our form values
-      // Trick to reset/clear native browser form validation state
-      this.show = false
-      this.$nextTick(() => {
+      this.$store.dispatch('registration/clear_form')
+      requestAnimationFrame(() => {
         this.$refs.observer.reset()
       })
     }

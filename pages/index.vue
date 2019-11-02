@@ -2,14 +2,15 @@
   <div>
     <b-jumbotron class="bg-info">
       <template v-slot:header>
-      <img
-              width="110"
-              src="~/assets/coderdojo3.png"
-              class="img-fluid"
-              alt="Coolest Projects3"
-              itemprop="logo"
-      >
-        <span class="hero-text">Coderdojo Belgium </span>
+        <div>
+          <img
+            src="~/assets/logo.svg"
+            class="img-fluid"
+            alt="Coolest Projects"
+            itemprop="logo"
+            style="height:1.5em"
+          /><span class="hero-text">Coderdojo Belgium</span>
+        </div>
       </template>
       <template v-slot:lead>
         Coolest Projects Registration Procedure 2020
