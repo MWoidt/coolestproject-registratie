@@ -2,14 +2,10 @@
   <div>
     <b-jumbotron class="bg-info">
       <template v-slot:header>
-      <img
-              width="110"
-              src="~/assets/coderdojo3.png"
-              class="img-fluid"
-              alt="Coolest Projects3"
-              itemprop="logo"
-      >
-        <span class="hero-text">Coderdojo Belgium </span>
+        <div>
+          <Logo />
+          <span class="hero-text" style="line-height:1.5em">Coderdojo Belgium</span>
+        </div>
       </template>
       <template v-slot:lead>
         Coolest Projects Registration Procedure 2020
@@ -35,8 +31,13 @@
   </div>
 </template>
 <script>
+import Logo from '~/components/Logo.vue'
+
 export default {
   layout: 'fullwith',
+  components: {
+    Logo
+  },
   data () {
     return {}
   }

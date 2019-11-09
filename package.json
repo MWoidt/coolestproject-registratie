@@ -1,7 +1,7 @@
 {
-  "name": "coderdojo",
+  "name": "coolestproject_registatie",
   "version": "1.0.0",
-  "description": "registration procedure",
+  "description": "Coolestproject Registratie",
   "author": "MWoidt",
   "private": true,
   "scripts": {
@@ -26,10 +26,12 @@
     "nuxt": "^2.10.2",
     "nuxt-fontawesome": "^0.4.0",
     "nuxt-i18n": "^6.3.0",
+    "nuxt-vuex-localstorage": "^1.2.6",
     "vee-validate": "^3.0.11",
     "vue-airbnb-style-datepicker": "^2.7.1",
     "vue-i18n": "^8.15.0",
-    "vue-i18n-loader": "^1.0.0"
+    "vue-i18n-loader": "^1.0.0",
+    "vuex-persist": "^2.1.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",

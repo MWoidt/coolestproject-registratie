@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-form-select v-model="month" :options="month_list" @input="change" :state="state" />
-    <b-form-select v-model="year" :options="year_list" @input="change" :state="state" />
+    <b-form-select v-model="month" :options="month_list" :state="state" @input="change" />
+    <b-form-select v-model="year" :options="year_list" :state="state" @input="change" />
   </div>
 </template>
 <script>
@@ -11,7 +11,7 @@ import differenceInCalendarYears from 'date-fns/difference_in_calendar_years'
 export default {
   props: {
     eventDate: Date,
-    value: Date,
+    value: [String, Date],
     maxAge: {
       type: Number,
       default: 90
@@ -27,8 +27,8 @@ export default {
   },
   data () {
     return {
-      month_int: null,
-      year_int: null,
+      month_int: 0,
+      year_int: 0,
       month_list: [
         { text: 'Kies een maand', value: null },
         { value: 0, text: 'Januari' },
@@ -62,7 +62,11 @@ export default {
     month: {
       get () {
         if (this.value) {
-          return this.value.getMonth()
+          if (this.value instanceof Date) {
+            return this.value.getMonth()
+          } else {
+            return new Date(this.value).getMonth()
+          }
         } else {
           return null
         }
@@ -74,7 +78,11 @@ export default {
     year: {
       get () {
         if (this.value) {
-          return this.value.getFullYear()
+          if (this.value instanceof String) {
+            return this.value.getFullYear()
+          } else {
+            return new Date(this.value).getFullYear()
+          }
         } else {
           return null
         }
