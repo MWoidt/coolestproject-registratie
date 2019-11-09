@@ -12,23 +12,23 @@ export const state = () => ({
   minAge: 5,
   geslacht: [
     { text: 'Ik ben een', value: null },
-    'Meisje',
-    'Jongen',
-    'X'
+    { value: 'm', text: 'Meisje' },
+    { value: 'j', text: 'Jongen' },
+    { value: 'x', text: 'X' }
   ],
   shirttype: [
     { text: 'Kies een type', value: null },
-    'Meisje',
-    'Jongen'
+    { value: 'm', text: 'Meisje' },
+    { value: 'j', text: 'Jongen' }
   ],
   shirtsize: [
     { text: 'Kies een maat', value: null },
-    'S',
-    'M',
-    'L',
-    'XL',
-    'XXL',
-    '3XL'
+    { value: 's', text: 'S' },
+    { value: 'm', text: 'M' },
+    { value: 'l', text: 'L' },
+    { value: 'xl', text: 'XL' },
+    { value: 'xxl', text: 'XXL' },
+    { value: '3xl', text: '3XL' }
   ],
   project_types: [
     { value: 'scratch', text: 'Scratch' },

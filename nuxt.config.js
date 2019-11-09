@@ -78,6 +78,7 @@ module.exports = {
   modules: [
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
+    '@nuxtjs/axios',
     ['nuxt-i18n', {
       vueI18nLoader: true
     }],
@@ -122,5 +123,11 @@ module.exports = {
     vueI18n: {
       fallbackLocale: 'nl'
     }
+  },
+  axios: {
+    proxy: true
+  },
+  proxy: {
+    '/api/': { target: 'http://localhost:8080', pathRewrite: { '^/api/': '' } }
   }
 }
