@@ -681,8 +681,13 @@ export default {
     }
   },
   methods: {
-    onSubmit (evt) {
-      alert(JSON.stringify(this.form))
+    async onSubmit (evt) {
+      alert(JSON.stringify(this.$store.state.registration))
+      // const xcrfTokenResponse = await this.$axios.$get('/api/ping', { headers: { 'X-Csrf-Token': 'Fetch' } })
+      const registrationResponse = await this.$axios.$post('/api/registration', this.$store.state.registration, { headers: { 'X-Csrf-Token': '' } })
+
+      alert(registrationResponse)
+      // alert(JSON.stringify(this.form))
     },
     onReset (evt) {
       this.$store.dispatch('registration/clear_form')
