@@ -3,13 +3,8 @@
     <b-jumbotron class="bg-info">
       <template v-slot:header>
         <div>
-          <img
-            src="~/assets/logo.svg"
-            class="img-fluid"
-            alt="Coolest Projects"
-            itemprop="logo"
-            style="height:1.5em"
-          ><span class="hero-text">Coderdojo Belgium</span>
+          <Logo />
+          <span class="hero-text" style="line-height:1.5em">Coderdojo Belgium</span>
         </div>
       </template>
       <template v-slot:lead>
@@ -36,8 +31,13 @@
   </div>
 </template>
 <script>
+import Logo from '~/components/Logo.vue'
+
 export default {
   layout: 'fullwith',
+  components: {
+    Logo
+  },
   data () {
     return {}
   }
