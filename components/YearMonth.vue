@@ -31,18 +31,18 @@ export default {
       year_int: 0,
       month_list: [
         { text: 'Kies een maand', value: null },
-        { value: 0, text: 'januari' },
-        { value: 1, text: 'februari' },
-        { value: 2, text: 'maart' },
-        { value: 3, text: 'april' },
-        { value: 4, text: 'mei' },
-        { value: 5, text: 'juni' },
-        { value: 6, text: 'juli' },
-        { value: 7, text: 'augustus' },
-        { value: 8, text: 'september' },
-        { value: 9, text: 'oktober' },
-        { value: 10, text: 'november' },
-        { value: 11, text: 'december' }
+        { value: 0, text: 'Januari' },
+        { value: 1, text: 'Februari' },
+        { value: 2, text: 'Maart' },
+        { value: 3, text: 'April' },
+        { value: 4, text: 'Mei' },
+        { value: 5, text: 'Juni' },
+        { value: 6, text: 'Juli' },
+        { value: 7, text: 'Augustus' },
+        { value: 8, text: 'September' },
+        { value: 9, text: 'Oktober' },
+        { value: 10, text: 'November' },
+        { value: 11, text: 'December' }
       ]
     }
   },
