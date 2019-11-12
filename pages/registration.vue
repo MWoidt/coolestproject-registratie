@@ -684,7 +684,7 @@ export default {
     async onSubmit (evt) {
       alert(JSON.stringify(this.$store.state.registration))
       // const xcrfTokenResponse = await this.$axios.$get('/api/ping', { headers: { 'X-Csrf-Token': 'Fetch' } })
-      const registrationResponse = await this.$axios.$post('/api/registration', this.$store.state.registration, { headers: { 'X-Csrf-Token': '' } })
+      const registrationResponse = await this.$axios.$post('/api/register', this.$store.state.registration)
 
       alert(registrationResponse)
       // alert(JSON.stringify(this.form))
