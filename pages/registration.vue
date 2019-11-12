@@ -2,6 +2,9 @@
   <b-row>
     <b-col>
       <h1>{{ $t('title') }}</h1>
+      <b-alert dismissible :show="show" :variant="variant">
+        {{ message }}
+      </b-alert>
       <h2>{{ $t('personal_info') }}</h2>
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
@@ -480,7 +483,10 @@ export default {
   },
   data () {
     return {
-      own_project: 'own'
+      own_project: 'own',
+      error_show: false,
+      error_variant: 'success',
+      error_message: 'De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website'
     }
   },
   computed: {
@@ -682,12 +688,26 @@ export default {
   },
   methods: {
     async onSubmit (evt) {
+<<<<<<< HEAD
       alert(JSON.stringify(this.$store.state.registration))
       // const xcrfTokenResponse = await this.$axios.$get('/api/ping', { headers: { 'X-Csrf-Token': 'Fetch' } })
       const registrationResponse = await this.$axios.$post('/api/register', this.$store.state.registration)
 
       alert(registrationResponse)
       // alert(JSON.stringify(this.form))
+=======
+      try {
+        await this.$axios.$post('/api/register', this.$store.getters['registration/sanitizedJSON'])
+        this.onReset(evt)
+        this.error_variant = 'danger'
+        this.error_message = 'error'
+        this.error_show = true
+      } catch (error) {
+        this.error_variant = 'danger'
+        this.error_message = 'error'
+        this.error_show = true
+      }
+>>>>>>> 2b37c4e97eeb59ac182401317beafdbb31cbf7b3
     },
     onReset (evt) {
       this.$store.dispatch('registration/clear_form')
