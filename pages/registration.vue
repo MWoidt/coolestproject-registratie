@@ -688,14 +688,6 @@ export default {
   },
   methods: {
     async onSubmit (evt) {
-<<<<<<< HEAD
-      alert(JSON.stringify(this.$store.state.registration))
-      // const xcrfTokenResponse = await this.$axios.$get('/api/ping', { headers: { 'X-Csrf-Token': 'Fetch' } })
-      const registrationResponse = await this.$axios.$post('/api/register', this.$store.state.registration)
-
-      alert(registrationResponse)
-      // alert(JSON.stringify(this.form))
-=======
       try {
         await this.$axios.$post('/api/register', this.$store.getters['registration/sanitizedJSON'])
         this.onReset(evt)
@@ -707,7 +699,6 @@ export default {
         this.error_message = 'error'
         this.error_show = true
       }
->>>>>>> 2b37c4e97eeb59ac182401317beafdbb31cbf7b3
     },
     onReset (evt) {
       this.$store.dispatch('registration/clear_form')
