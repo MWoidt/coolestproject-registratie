@@ -2,8 +2,13 @@
   <b-row>
     <b-col>
       <h1>{{ $t('title') }}</h1>
+<<<<<<< HEAD
       <b-alert dismissible :show="show" :variant="variant" id="info">
         {{ message }}
+=======
+      <b-alert dismissible :show="error_show" :variant="error_variant">
+        {{ error_message }}
+>>>>>>> 3ba29c62902d74796dcf81b527a1aba2f5b19ed3
       </b-alert>
       <h2>{{ $t('personal_info') }}</h2>
       <ValidationObserver ref="observer" v-slot="{ passes }">
