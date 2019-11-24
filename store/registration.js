@@ -171,6 +171,7 @@ export const getters = {
     // 1) We don't want to send null values
     // 2) the local store stores everything as a string so we need to fix that before sending
     // 3) we only want to send the date not the time
+    //
     const sanitizedJSON = {}
     Object.keys(state).forEach(function (key) {
       if (state[key] !== null) {
