@@ -2,7 +2,7 @@
   <b-row>
     <b-col>
       <h1>{{ $t('title') }}</h1>
-      <b-alert dismissible :show="show" :variant="variant">
+      <b-alert dismissible :show="show" :variant="variant" id="info">
         {{ message }}
       </b-alert>
       <h2>{{ $t('personal_info') }}</h2>
@@ -466,9 +466,9 @@ export default {
   data () {
     return {
       own_project: 'own',
-      error_show: false,
-      error_variant: 'success',
-      error_message: 'De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website'
+      show: false,
+      variant: 'success',
+      message: 'De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website'
     }
   },
   computed: {
@@ -664,14 +664,15 @@ export default {
       try {
         await this.$axios.$post('/api/register', this.$store.getters['registration/sanitizedJSON'])
         this.onReset(evt)
-        this.error_variant = 'danger'
-        this.error_message = 'error'
-        this.error_show = true
+        this.variant = 'success'
+        this.message = 'Registratie gelukt'
+        this.show = true
       } catch (error) {
-        this.error_variant = 'danger'
-        this.error_message = 'error'
-        this.error_show = true
+        this.variant = 'danger'
+        this.message = 'error, later komt hier meer info in'
+        this.show = true
       }
+      window.scrollTo(0, 0)
     },
     onReset (evt) {
       this.$store.dispatch('registration/clear_form')
