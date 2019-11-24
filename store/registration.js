@@ -8,8 +8,7 @@ const originalState = () => {
     general_questions: ['photo', 'contact'],
     mandatory_approvals: [],
     birthmonth: null,
-    size: null,
-    type: null,
+    t_size: null,
     via: null,
     medical: null,
     extra: null,
@@ -89,6 +88,9 @@ export const mutations = {
   },
   project_lang (state, projectLang) {
     state.project_lang = projectLang
+  },
+  t_size (state, tSize) {
+    state.t_size = tSize
   }
 }
 
@@ -126,11 +128,8 @@ export const actions = {
   birthmonth ({ commit }, birthmonth) {
     commit('birthmonth', birthmonth)
   },
-  size ({ commit }, size) {
-    commit('size', size)
-  },
-  type ({ commit }, type) {
-    commit('type', type)
+  t_size ({ commit }, tSize) {
+    commit('t_size', tSize)
   },
   via ({ commit }, via) {
     commit('via', via)

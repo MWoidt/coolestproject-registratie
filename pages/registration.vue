@@ -2,8 +2,13 @@
   <b-row>
     <b-col>
       <h1>{{ $t('title') }}</h1>
+<<<<<<< HEAD
+      <b-alert dismissible :show="show" :variant="variant" id="info">
+        {{ message }}
+=======
       <b-alert dismissible :show="error_show" :variant="error_variant">
         {{ error_message }}
+>>>>>>> 3ba29c62902d74796dcf81b527a1aba2f5b19ed3
       </b-alert>
       <h2>{{ $t('personal_info') }}</h2>
       <ValidationObserver ref="observer" v-slot="{ passes }">
@@ -140,24 +145,6 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="T-shirtType">
-            <b-form-group
-              id="input-group-8"
-              label="T-shirt type:"
-              label-for="input-8"
-            >
-              <b-form-select
-                id="input-8"
-                v-model="type"
-                :options="shirttype"
-                :state="errors[0] ? false : (valid ? true : null)"
-                aria-describedby="input-8-live-feedback"
-              />
-              <b-form-invalid-feedback id="input-8-live-feedback">
-                {{ errors[0] }}
-              </b-form-invalid-feedback>
-            </b-form-group>
-          </ValidationProvider>
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="T-shirtSize">
             <b-form-group
               id="input-group-9"
@@ -166,7 +153,7 @@
             >
               <b-form-select
                 id="input-9"
-                v-model="size"
+                v-model="t_size"
                 :options="shirtsize"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-9-live-feedback"
@@ -484,9 +471,9 @@ export default {
   data () {
     return {
       own_project: 'own',
-      error_show: false,
-      error_variant: 'success',
-      error_message: 'De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website'
+      show: false,
+      variant: 'success',
+      message: 'De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website'
     }
   },
   computed: {
@@ -510,7 +497,6 @@ export default {
       'maxAge',
       'minAge',
       'geslacht',
-      'shirttype',
       'shirtsize',
       'project_types',
       'languages',
@@ -581,20 +567,12 @@ export default {
         return this.$store.state.registration.birthmonth
       }
     },
-    size: {
+    t_size: {
       set (value) {
-        this.$store.dispatch('registration/size', value)
+        this.$store.dispatch('registration/t_size', value)
       },
       get () {
-        return this.$store.state.registration.size
-      }
-    },
-    type: {
-      set (value) {
-        this.$store.dispatch('registration/type', value)
-      },
-      get () {
-        return this.$store.state.registration.type
+        return this.$store.state.registration.t_size
       }
     },
     via: {
@@ -691,14 +669,15 @@ export default {
       try {
         await this.$axios.$post('/api/register', this.$store.getters['registration/sanitizedJSON'])
         this.onReset(evt)
-        this.error_variant = 'success'
-        this.error_message = 'Ok'
-        this.error_show = true
+        this.variant = 'success'
+        this.message = 'Registratie gelukt'
+        this.show = true
       } catch (error) {
-        this.error_variant = 'danger'
-        this.error_message = 'error'
-        this.error_show = true
+        this.variant = 'danger'
+        this.message = 'error, later komt hier meer info in'
+        this.show = true
       }
+      window.scrollTo(0, 0)
     },
     onReset (evt) {
       this.$store.dispatch('registration/clear_form')
